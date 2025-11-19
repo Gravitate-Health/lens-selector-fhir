@@ -24,7 +24,7 @@ paths:
                     type: array
                     items:
                       type: string
-                    example: ["lense1", "lense2", "lense3"]
+                    example: ["lens1", "lens2", "lens3"]
 
   /lenses/{name}:
     get:
