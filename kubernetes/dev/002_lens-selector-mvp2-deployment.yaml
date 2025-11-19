@@ -15,17 +15,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: lens-selector-mvp2
+  name: lens-selector-fhir
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: lens-selector-mvp2
+      app: lens-selector-fhir
   template:
     spec:
       containers:
-      - name: lens-selector-mvp2
-        image: gravitate-registry.cr.de-fra.ionos.com/lens-selector-mvp2:latest
+      - name: lens-selector-fhir
+        image: gravitate-registry.cr.de-fra.ionos.com/lens-selector-fhir:latest
         env:
         - name: ENVIRONMENT
           value: "dev"

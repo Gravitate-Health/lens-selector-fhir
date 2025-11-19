@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
 - ../base
 patches:
-  - path: 002_lens-selector-mvp2-deployment.yaml
+  - path: 002_lens-selector-fhir-deployment.yaml

@@ -45,7 +45,7 @@ metadata:
 ---
 ## Usage
 
-Service will be accessible internally from the kubernetes cluster with the url `http://lens-selector-mvp2.default.svc.cluster.local:3000/focus`
+Service will be accessible internally from the kubernetes cluster with the url `http://lens-selector-fhir.default.svc.cluster.local:3000/focus`
 
 ---
 ## Avaible Lenses
@@ -56,7 +56,7 @@ The lenses are based on the following definition
 
 The lenses that are avaible in this package or in testing are detailed on this table
 
-| LENSE     | DESCRIPTION                                                                                        |
+| LENS     | DESCRIPTION                                                                                        |
 |-----------|----------------------------------------------------------------------------------------------------|
 | Pregnancy | _Hightlights the pregnancyCategory_, _breastfeedingCategory_, _contra-indication-pregancy_ classes |
 | Diabetes  | _WIP_                                                                                              |
