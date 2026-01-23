@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
       - name: lens-selector-fhir
-        image: gravitate-registry.cr.de-fra.ionos.com/lens-selector-fhir:v0.5.0
+        image: ghcr.io/gravitate-health/lens-selector-fhir:v0.5.0
         imagePullPolicy: Always
         env:
         - name: ENVIRONMENT
