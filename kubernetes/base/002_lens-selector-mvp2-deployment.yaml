@@ -33,8 +33,8 @@ spec:
         env:
         - name: ENVIRONMENT
           value: "prod"
-        - name: BASE_URL
-          value: "http://fosps.gravitatehealth.eu"
+        - name: FHIR_URL
+          value: "http://fhir-server-epi:8080/api/fhir"
         ports:
         - containerPort: 3000
           protocol: TCP

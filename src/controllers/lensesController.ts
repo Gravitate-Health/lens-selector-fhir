@@ -1,13 +1,13 @@
 import { Response, Request } from "express";
 import { Logger } from "../utils/Logger";
+import { FHIR_URL } from "..";
 
-const fhirIpsURL = process.env.BASE_URL + "/epi/api/fhir"
+const LENS_PATH : string = "/Library";
 
 const retrieveLensesNames = async () => {
   try {
     let response = []
-    let lensPath = "/Library"
-    let lenses = await fetch(`${fhirIpsURL}${lensPath}`)
+    let lenses = await fetch(`${FHIR_URL}${LENS_PATH}`)
 
     let lensesBundle = await lenses.json()
     if (lensesBundle.total === 0) {
@@ -24,9 +24,9 @@ const retrieveLensesNames = async () => {
 }
 
 const retrieveLens = async (lenseId: string): Promise<Object | null> => {
-  let lensPath = `/Library?identifier=${lenseId}`
+  let lensPath = `${LENS_PATH}?identifier=${lenseId}`
   try {
-    let lenses = await fetch(`${fhirIpsURL}${lensPath}`)
+    let lenses = await fetch(`${FHIR_URL}${lensPath}`)
     let lensesBundle = await lenses.json()
     if (lensesBundle.total === 0) {
       return `No lens found with ${lenseId} identifier`
