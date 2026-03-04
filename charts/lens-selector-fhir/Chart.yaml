@@ -1,0 +1,17 @@
+apiVersion: v2
+name: lens-selector-fhir
+description: A Helm chart for deploying the Gravitate Health Lens Selector FHIR service
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+keywords:
+  - lens-selector
+  - gravitate-health
+  - fhir
+maintainers:
+  - name: Gravitate Health Team
+    url: https://github.com/Gravitate-Health
+home: https://github.com/Gravitate-Health/lens-selector-example
+sources:
+  - https://github.com/Gravitate-Health/lens-selector-example
+license: Apache-2.0

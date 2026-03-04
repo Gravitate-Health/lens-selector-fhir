@@ -1,0 +1,149 @@
+# Default values for lens-selector-fhir Helm chart
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# Replica count for the Deployment
+replicaCount: 1
+
+# Image configuration
+image:
+  # Container image repository
+  repository: ghcr.io/gravitate-health/lens-selector-fhir
+  # Image pull policy to use
+  pullPolicy: IfNotPresent
+  # Overrides the image tag; defaults to Chart.appVersion
+  tag: "latest"
+
+# Image pull secrets for private registries
+imagePullSecrets: []
+
+# Pod name override
+nameOverride: ""
+# Full pod name override
+fullnameOverride: ""
+
+# Kubernetes Service configuration
+service:
+  # Service type: ClusterIP, NodePort, LoadBalancer
+  type: ClusterIP
+  # Port to expose the service on
+  port: 3000
+  # Target port for the container
+  targetPort: 3000
+  # Protocol: TCP or UDP
+  protocol: TCP
+  # NodePort (only used if service.type is NodePort)
+  nodePort: null
+
+# Resource requests and limits
+resources:
+  limits:
+    # Maximum memory the container can use
+    memory: "512Mi"
+    # Maximum CPU the container can use
+    cpu: "500m"
+  requests:
+    # Minimum memory the container needs
+    memory: "256Mi"
+    # Minimum CPU the container needs
+    cpu: "250m"
+
+# Pod-level security context
+podSecurityContext: {}
+  # fsGroup: 2000
+
+# Container-level security context
+securityContext: {}
+  # allowPrivilegeEscalation: false
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+# Node selector for pod scheduling
+nodeSelector: {}
+
+# Tolerations for pod scheduling
+tolerations: []
+
+# Pod affinity rules
+affinity: {}
+
+# Environment variables
+env:
+  # Application environment
+  ENVIRONMENT: "prod"
+  # FHIR server URL
+  FHIR_URL: "http://fhir-server-epi:8080/epi/api/fhir"
+
+# Secrets (DO NOT put actual secret values here in production)
+# Use external secret management systems instead
+secrets: {}
+  # MY_SECRET_KEY: ""
+
+# Networking configuration
+networking:
+  # Type of networking: none, ingress, or istio
+  # "none": No ingress/gateway configured
+  # "ingress": Use standard Kubernetes Ingress
+  # "istio": Use Istio VirtualService/Gateway
+  type: "none"
+
+# Ingress configuration (only used if networking.type is "ingress")
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts:
+    - host: lens-selector-fhir.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+# Istio configuration (only used if networking.type is "istio")
+istio:
+  enabled: false
+  virtualService:
+    hosts:
+      - lens-selector-fhir.default.svc.cluster.local
+    http:
+      - match:
+          - uri:
+              prefix: /
+        route:
+          - destination:
+              host: lens-selector-fhir
+              port:
+                number: 3000
+
+# Liveness probe configuration
+livenessProbe: {}
+  # httpGet:
+  #   path: /health
+  #   port: 3000
+  # initialDelaySeconds: 30
+  # periodSeconds: 10
+  # timeoutSeconds: 5
+  # failureThreshold: 3
+
+# Readiness probe configuration
+readinessProbe: {}
+  # httpGet:
+  #   path: /ready
+  #   port: 3000
+  # initialDelaySeconds: 10
+  # periodSeconds: 5
+  # timeoutSeconds: 3
+  # failureThreshold: 3
+
+# Restart policy for the pod
+restartPolicy: Always
+
+# Annotations to add to all Kubernetes resources
+annotations: {}
+
+# Labels to add to all Kubernetes resources
+labels: {}

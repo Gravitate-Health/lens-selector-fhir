@@ -1,0 +1,19 @@
+{{- if eq .Values.networking.type "istio" }}
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: {{ include "lens-selector-fhir.fullname" . }}
+  labels:
+    {{- include "lens-selector-fhir.labels" . | nindent 4 }}
+  {{- with .Values.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  hosts:
+  {{- range .Values.istio.virtualService.hosts }}
+  - {{ . | quote }}
+  {{- end }}
+  http:
+  {{- toYaml .Values.istio.virtualService.http | nindent 2 }}
+{{- end }}
